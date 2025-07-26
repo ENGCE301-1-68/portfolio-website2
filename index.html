@@ -99,37 +99,74 @@
     </div>
 </section>
 
-
     <!-- Dev B -->
     <section id="projects" class="projects">
-    <div class="container">
-        <h2 class="section-title">My Projects</h2>
-        
-        <!-- Filter Buttons -->
-        <div class="filter-buttons">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="web">Web Apps</button>
-            <button class="filter-btn" data-filter="mobile">Mobile</button>
-            <button class="filter-btn" data-filter="ui">UI/UX</button>
-        </div>
-        
-        <div class="projects-grid">
-            <div class="project-card" data-category="web">
-                <!-- Project content -->
+            <div class="container">
+                <h2 class="section-title">My Projects (<span id="visible-count">0</span>)</h2>
+                
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="web">Web Apps</button>
+                    <button class="filter-btn" data-filter="mobile">Mobile</button>
+                    <button class="filter-btn" data-filter="ui">UI/UX</button>
+                </div>
+                
+                <div class="projects-grid">
+                    <div class="project-card" data-category="web">
+                        <h3>Project Alpha</h3>
+                        <p>A responsive e-commerce web application.</p>
+                        <a href="#" target="_blank">View Project</a>
+                    </div>
+                    <div class="project-card" data-category="mobile">
+                        <h3>Mobile App Beta</h3>
+                        <p>An interactive mobile app for task management.</p>
+                        <a href="#" target="_blank">View Project</a>
+                    </div>
+                    <div class="project-card" data-category="ui">
+                        <h3>UI Design Gamma</h3>
+                        <p>User interface design for a modern dashboard.</p>
+                        <a href="#" target="_blank">View Design</a>
+                    </div>
+                    <div class="project-card" data-category="web">
+                        <h3>Blog Platform</h3>
+                        <p>A dynamic blog platform built with Node.js.</p>
+                        <a href="#" target="_blank">View Project</a>
+                    </div>
+                    <div class="project-card" data-category="ui">
+                        <h3>Landing Page UI</h3>
+                        <p>Sleek and minimalist landing page concept.</p>
+                        <a href="#" target="_blank">View Design</a>
+                    </div>
+                    <div class="project-card" data-category="mobile">
+                        <h3>mobile</h3>
+                        <p>Sleek and minimalist landing page concept.</p>
+                        <a href="#" target="_blank">View Design</a>
+                </div>
             </div>
-            <div class="project-card" data-category="mobile">
-                <!-- Project content -->
-            </div>
-            <div class="project-card" data-category="ui">
-                <!-- Project content -->
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
 
-<button class="back-to-top" id="backToTop">
-    <i class="fas fa-arrow-up"></i>
-</button>
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">Contact Me</h2>
+                <form class="contact-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" rows="6" required></textarea>
+                    <button type="submit" class="btn-submit">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Our Team Portfolio. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
 <script src="js/script.js"></script>
 </body>

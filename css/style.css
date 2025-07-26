@@ -114,14 +114,277 @@ header {
     color: var(--link-hover-color);
 }
 
-/* Update other elements to use CSS variables */
-.skill-item, .project-card, .contact-form {
-    background: var(--card-bg);
+/* Dev B: Hero Section Styles */
+.hero {
+    padding: 100px 20px;
+    text-align: center;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
-.about, .projects {
-    background: var(--section-bg);
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
 }
+
+.hero-subtitle {
+    font-size: 1.8rem;
+    color: var(--text-color);
+}
+
+.highlight {
+    color: #3498db;
+}
+
+/* Dev B: Typing Animation Cursor */
+.cursor {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* Dev B: About Section Styles (รวมส่วน Team Members) */
+.about {
+    padding: 80px 20px;
+    background: var(--section-bg); /* Dev A */
+    transition: background-color 0.3s ease; /* Dev A */
+}
+
+.team-members {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 3rem;
+    flex-wrap: wrap; /* ให้ขึ้นบรรทัดใหม่เมื่อหน้าจอเล็ก */
+}
+
+.member-card {
+    text-align: center;
+    background: var(--card-bg); /* Dev A */
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Dev A */
+    width: 280px; /* กำหนดความกว้างเพื่อให้อยู่ข้างกัน */
+}
+
+.member-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: 3px solid #3498db;
+}
+
+.member-card h3 {
+    font-size: 1.7rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.member-card p {
+    color: var(--text-color);
+}
+
+
+/* Dev B: Skills Section Styles */
+.skills {
+    padding: 80px 20px;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    text-align: center;
+}
+
+.skill-item {
+    background: var(--card-bg); /* Dev A */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    font-weight: bold;
+    color: var(--text-color);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Dev A */
+}
+
+/* Dev B: Projects Section Styles */
+.projects {
+    padding: 80px 20px;
+    background: var(--section-bg); /* Dev A */
+    transition: background-color 0.3s ease; /* Dev A */
+}
+
+/* Dev B: Project Filter Buttons */
+.filter-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    border: none;
+    background: transparent;
+    color: #666;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background: #3498db;
+    color: white;
+}
+
+/* Dev B: Ripple Effect */
+.filter-btn .ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.7);
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Dev B: Project Card */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background: var(--card-bg); /* Dev A */
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease, height 0.3s ease, padding 0.3s ease, margin 0.3s ease; /* Dev A & B */
+    display: flex; /* เพื่อจัดเรียงเนื้อหาภายใน card */
+    flex-direction: column;
+}
+
+.project-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.project-card p {
+    margin-bottom: 1rem;
+    flex-grow: 1; /* ทำให้ p กินพื้นที่ที่เหลือ */
+    color: var(--text-color);
+}
+
+.project-card a {
+    display: inline-block;
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    align-self: flex-start; /* จัดให้ปุ่มอยู่ด้านล่างซ้าย */
+}
+
+.project-card a:hover {
+    background-color: #2980b9;
+}
+
+/* Dev B: Hide/Show Project Cards */
+.project-card.hide {
+    opacity: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    pointer-events: none; /* ป้องกันการคลิกเมื่อซ่อน */
+}
+
+
+/* Dev B: Contact Section Styles */
+.contact {
+    padding: 80px 20px;
+}
+
+.contact-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--card-bg); /* Dev A */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Dev A */
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    background-color: var(--input-bg); /* Dev A */
+    color: var(--input-text-color); /* Dev A */
+    transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease; /* Dev A */
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #3498db;
+}
+
+.contact-form .btn-submit {
+    background-color: #3498db;
+    color: var(--button-text-color);
+    border: none;
+    padding: 15px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form .btn-submit:hover {
+    background-color: var(--button-hover-bg);
+}
+
+/* Dev B: Footer Styles */
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: var(--nav-bg); /* ใช้สีเดียวกับ nav bar */
+    color: var(--nav-link-color);
+    margin-top: 50px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Dev A */
+}
+
 
 /* Dev A: Loading Animation Styles */
 .loader {
@@ -201,7 +464,7 @@ header {
 
 
 
-/* Dev B Back to Top Button */
+/* Dev B: Back to Top Button Styles */
 .back-to-top {
     position: fixed;
     bottom: 30px;
@@ -216,8 +479,9 @@ header {
     font-size: 1.2rem;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease, transform 0.1s ease; /* Dev B: เพิ่ม transform */
     z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .back-to-top.show {
@@ -229,3 +493,69 @@ header {
     background: #2980b9;
     transform: translateY(-2px);
 }
+
+/* Responsive Design (สำหรับทั้ง Dev A และ Dev B) */
+@media (max-width: 768px) {
+    .main-nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .theme-toggle {
+        align-self: flex-end; /* จัดให้ปุ่มอยู่ขวาบนสุด */
+        margin-top: -30px; /* เลื่อนขึ้นให้ชิดขวาบน */
+        margin-right: 20px;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.4rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .team-members {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .member-card {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+ /* Skills grid on small screens */
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* ลดขนาด minmax ลง */
+        gap: 15px; /* ลดระยะห่าง */
+    }
+
+    .skill-item i {
+        font-size: 2.5rem; /* ลดขนาดไอคอนลงสำหรับมือถือ */
+    }
+
+    .skill-item span {
+        font-size: 0.9rem; /* ลดขนาดตัวอักษรลงสำหรับมือถือ */
+    }
