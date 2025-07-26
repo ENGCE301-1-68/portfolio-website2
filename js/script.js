@@ -102,29 +102,77 @@ window.addEventListener('resize', updateScrollProgress);
 document.addEventListener('DOMContentLoaded', updateScrollProgress);
 
 
-// Project Filter System B
+// Dev B: Project Filter System
 const filterButtons = document.querySelectorAll('.filter-btn');
 const projectCards = document.querySelectorAll('.project-card');
+const visibleCount = document.getElementById('visible-count');
 
+// ฟังก์ชันสำหรับอัปเดตจำนวนโปรเจกต์ที่แสดง
+function updateVisibleCount() {
+    let count = 0;
+    projectCards.forEach(card => {
+        if (!card.classList.contains('hide')) {
+            count++;
+        }
+    });
+    if (visibleCount) {
+        visibleCount.textContent = count;
+    }
+}
 
 filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
+    button.addEventListener('click', function (event) { // เพิ่ม event parameter
         // Remove active class from all buttons
         filterButtons.forEach(btn => btn.classList.remove('active'));
-        // Add active class to clicked button
-        button.classList.add('active');
-        
-        const filterValue = button.getAttribute('data-filter');
-        
-        projectCards.forEach(card => {
-            if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
-                card.classList.remove('hide');
-            } else {
-                card.classList.add('hide');
-            }
+        this.classList.add('active');
+
+        const filterValue = this.getAttribute('data-filter');
+
+        // Filter projects พร้อมแอนิเมชัน
+        projectCards.forEach((card, index) => {
+            setTimeout(() => {
+                if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                    card.classList.remove('hide');
+                } else {
+                    card.classList.add('hide');
+                }
+
+                // อัปเดตจำนวนที่มองเห็นหลังจากที่ filter/animation เสร็จสิ้นสำหรับ card สุดท้าย
+                if (index === projectCards.length - 1) {
+                    setTimeout(updateVisibleCount, 300); // หน่วงเวลาเล็กน้อยเพื่อให้แอนิเมชันเสร็จ
+                }
+            }, index * 50); // หน่วงเวลา 50ms สำหรับแต่ละ card
         });
+
+        // เพิ่ม Ripple Effect ให้กับปุ่มที่ถูกคลิก
+        const ripple = document.createElement('span');
+        ripple.classList.add('ripple');
+        // คำนวณตำแหน่งของ ripple ให้เริ่มจากจุดที่คลิก
+        const rect = this.getBoundingClientRect();
+        const size = Math.max(rect.width, rect.height);
+        ripple.style.width = ripple.style.height = `${size}px`;
+        ripple.style.left = `${event.clientX - rect.left - size / 2}px`;
+        ripple.style.top = `${event.clientY - rect.top - size / 2}px`;
+
+        this.appendChild(ripple);
+
+        // ลบ ripple ออกหลังจากแอนิเมชันเสร็จสิ้น
+        setTimeout(() => {
+            ripple.remove();
+        }, 600);
     });
 });
+
+// เรียกใช้ filter 'all' ครั้งแรกเมื่อหน้าโหลด เพื่อให้แสดงโปรเจกต์ทั้งหมดและอัปเดต count
+document.addEventListener('DOMContentLoaded', () => {
+    const allButton = document.querySelector('.filter-btn[data-filter="all"]');
+    if (allButton) {
+        allButton.click(); // จำลองการคลิกปุ่ม 'All'
+    } else {
+        updateVisibleCount(); // ถ้าไม่มีปุ่ม 'All' ให้เรียก updateVisibleCount โดยตรง
+    }
+});
+
 
 // Typing Animation
 const typingText = document.getElementById('typing-text');
@@ -163,20 +211,43 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(typeWriter, 1000);
 });
 
-// Back to Top Button
+// Dev B: Back to Top Button
 const backToTopButton = document.getElementById('backToTop');
 
-window.addEventListener('scroll', () => {
+function toggleBackToTop() {
     if (window.pageYOffset > 300) {
         backToTopButton.classList.add('show');
     } else {
         backToTopButton.classList.remove('show');
     }
-});
+}
 
-backToTopButton.addEventListener('click', () => {
+backToTopButton.addEventListener('click', function () {
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
     });
+
+    // Add click animation
+    this.style.transform = 'scale(0.9)';
+    setTimeout(() => {
+        this.style.transform = 'scale(1)';
+    }, 100);
 });
+
+// Throttle scroll event for performance
+let ticking = false;
+function requestTick() {
+    if (!ticking) {
+        window.requestAnimationFrame(toggleBackToTop);
+        ticking = true;
+    }
+}
+
+window.addEventListener('scroll', () => {
+    requestTick();
+    ticking = false;
+});
+document.addEventListener('DOMContentLoaded', toggleBackToTop);
+
+
