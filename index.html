@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-    
+
     <div class="theme-toggle">
     <i class="fas fa-moon" id="theme-icon"></i>
     </div>
@@ -23,6 +23,42 @@
     <div class="scroll-progress">
     <div class="progress-bar"></div>
     </div>
+
+    <h1>Hello, I'm <span class="highlight">Your Name</span></h1>
+    <p class="hero-subtitle">
+    <span id="typing-text"></span>
+    <span class="cursor">|</span>
+    </p>
+
+    <section id="projects" class="projects">
+    <div class="container">
+        <h2 class="section-title">My Projects</h2>
+        
+        <!-- Filter Buttons -->
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="web">Web Apps</button>
+            <button class="filter-btn" data-filter="mobile">Mobile</button>
+            <button class="filter-btn" data-filter="ui">UI/UX</button>
+        </div>
+        
+        <div class="projects-grid">
+            <div class="project-card" data-category="web">
+                <!-- Project content -->
+            </div>
+            <div class="project-card" data-category="mobile">
+                <!-- Project content -->
+            </div>
+            <div class="project-card" data-category="ui">
+                <!-- Project content -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<button class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+</button>
 
 <script src="js/script.js"></script>
 </body>
